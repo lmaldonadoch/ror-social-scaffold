@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '2.6.6'
 
 gem 'sass-rails', '~> 5.0', '>= 5.0.4'
 # gem 'wdm', '>= 0.1.0'
@@ -9,7 +9,7 @@ gem 'sass-rails', '~> 5.0', '>= 5.0.4'
 gem 'rails', '~> 5.2.4'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
-# Use Puma as the app server
+# Use Puma as te app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sassc'
