@@ -13,6 +13,11 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
 
+  validates :name, presence: true, length: {maximum: 50}
+  validates :email, presence: true, length: {maximum: 50}
+  
+  
+
   def friends
 	friends_array = friendships.map do |friendship| 
 		friendship.friend if friendship.confirmed==1

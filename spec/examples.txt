@@ -1,0 +1,7 @@
+example_id                                  | status | run_time        |
+------------------------------------------- | ------ | --------------- |
+./spec/features/users/create_spec.rb[1:1]   | passed | 1.75 seconds    |
+./spec/features/users/create_spec.rb[2:1:1] | passed | 0.04496 seconds |
+./spec/features/users/create_spec.rb[2:2:1] | passed | 0.09305 seconds |
+./spec/features/users/create_spec.rb[3:1:1] | passed | 0.07296 seconds |
+./spec/features/users/create_spec.rb[3:2:1] | passed | 0.10808 seconds |
