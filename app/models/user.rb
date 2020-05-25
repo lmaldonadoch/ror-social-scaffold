@@ -11,33 +11,37 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
 
   has_many :friendships
-  has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
+  has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
 
-  validates :name, presence: true, length: {maximum: 50}
-  validates :email, presence: true, length: {maximum: 50}
-  
-  
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :email, presence: true, length: { maximum: 50 }
 
   def friends
-	friends_array = friendships.map do |friendship| 
-		friendship.friend if friendship.confirmed==1
-	end
-	friends_array + inverse_friendships.map do |friendship| 
-	    friendship.user if friendship.confirmed==1
-	end
-	friends_array.compact
+    friends_array = friendships.map do |friendship|
+      friendship.friend if friendship.confirmed == 1
+    end
+    friends_array.concat(inverse_friendships.map do |friendship|
+      friendship.user if friendship.confirmed == 1
+    end)
+    friends_array.compact
   end
 
   def pending_friends
-    friendships.map{|friendship| friendship.friend unless friendship.confirmed == 1}.compact
+    friends_array = friendships.map do |friendship|
+      friendship.friend unless friendship.confirmed == 1
+    end
+    friends_array.compact
   end
 
   def friend_requests
-    inverse_friendships.map{|friendship| friendship.user unless friendship.confirmed == 1}.compact
+    friend_requests = inverse_friendships.map do |friendship|
+      friendship.user unless friendship.confirmed == 1
+    end
+    friend_requests.compact
   end
 
   def confirm_friend(user)
-    friendship = inverse_friendships.find{|friendship| friendship.user == user}
+    friendship = inverse_friendships.find { |friends| friends.user == user }
     friendship.confirmed = 1
     friendship.save
   end
