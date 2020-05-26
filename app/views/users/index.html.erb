@@ -5,7 +5,7 @@
         Name: <%= user.name %>
         <span class="profile-link">
           <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
-		  <%= link_to 'invite', user_path(user), class: 'profile-link'  %>
+		      <%= link_to 'invite', invitation_path, class: 'profile-link', {"_method"=>"post", "controller"=>"users", "action"=>"invitation", "format"=>"10", "user_id" => user.id}  %>
         </span>
       </li>
     <% end %>
