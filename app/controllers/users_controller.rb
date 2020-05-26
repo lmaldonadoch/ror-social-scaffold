@@ -23,14 +23,14 @@ class UsersController < ApplicationController
     invitation = Friendship.find_by(friend_id: current_user.id, user_id: params[:friends_id].to_i)
     invitation.confirmed = 1
     invitation.save
-    redirect_to user_path(current_user.id)
+    redirect_to user_path(current_user.id), notice: 'The friend invitation has been approved!'
   end
 
   def reject
     reject_invite = current_user.friend_requests.select { |invite| invite.id == params[:friends_id].to_i}
     invitation = Friendship.find_by(friend_id: current_user.id, user_id: params[:friends_id].to_i)
     invitation.destroy
-    redirect_to user_path(current_user.id)
+    redirect_to user_path(current_user.id), notice: 'The friend invitation has been rejected!'
   end
 
   private

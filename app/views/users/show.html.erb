@@ -17,8 +17,8 @@
 
   <% @user.friend_requests.each do |f|  %>
     <%= f.name  %> <br>
-	<%= link_to 'Accept', accept_path(:first_step, :friends_id => f.id), method: :put %><br>
-	<%= link_to 'Reject', reject_path(:first_step, :friends_id => f.id), method: :delete %><br>
+	<%= link_to 'Accept', accept_path(:first_step, :friends_id => f.id),class: 'profile-link', method: :put %><br>
+	<%= link_to 'Reject', reject_path(:first_step, :friends_id => f.id),class: 'profile-link', method: :delete %><br>
 	    <% end  %>
 
   <article class="timeline">
