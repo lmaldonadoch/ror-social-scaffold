@@ -12,7 +12,9 @@ class UsersController < ApplicationController
 
   def invitation
     p params
-    invitation = Friendship.create(user_id: current_user.id, friend_id: params[:user][:id], status: 0)
+    invite = Friendship.new(user_id: current_user.id, friend_id: params[:user_id], confirmed: 0)
+    invite.save
+    redirect_to users_path, notice: 'The friend invitation was sent!'
   end
 
   private

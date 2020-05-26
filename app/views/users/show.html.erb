@@ -1,5 +1,5 @@
 <section class="user-section">
-  <h2><%= "Name: #{@user.name}" %></h2>
+  <h2><%= "Name: #{@user.name}" %></h2> <%= link_to 'invite', invitation_path(:first_step, :user_id => @user.id), class: 'profile-link', method: :post %>
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">
