@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     # p @timeline_posts
 
     friend_posts = []
-    
+
     current_user.friends.each do |friend|
       friend_posts << friend.posts
     end
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
     @timeline_posts << user_posts
     @timeline_posts << friend_posts
 
-    return @timeline_posts.flatten!
+    @timeline_posts.flatten!
 
     # current_user.friends.each do |friend|
     #   @timeline_posts << friend.posts
