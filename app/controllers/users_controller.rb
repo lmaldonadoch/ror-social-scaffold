@@ -26,6 +26,13 @@ class UsersController < ApplicationController
     redirect_to user_path(current_user.id)
   end
 
+  def reject
+    reject_invite = current_user.friend_requests.select { |invite| invite.id == params[:friends_id].to_i}
+    invitation = Friendship.find_by(friend_id: current_user.id, user_id: params[:friends_id].to_i)
+    invitation.destroy
+    redirect_to user_path(current_user.id)
+  end
+
   private
 
   def user_params

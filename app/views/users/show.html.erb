@@ -16,8 +16,9 @@
   <h3>Pending friend invitations:</h3>
 
   <% @user.friend_requests.each do |f|  %>
-    <%= f.name  %> 
-	<%= link_to 'Accept', accept_path(:first_step, :friends_id => f.id),  method: :put %>
+    <%= f.name  %> <br>
+	<%= link_to 'Accept', accept_path(:first_step, :friends_id => f.id), method: :put %><br>
+	<%= link_to 'Reject', reject_path(:first_step, :friends_id => f.id), method: :delete %><br>
 	    <% end  %>
 
   <article class="timeline">
