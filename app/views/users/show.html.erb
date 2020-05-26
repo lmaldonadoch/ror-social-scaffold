@@ -4,11 +4,21 @@
   invitation_path(:first_step, 
   :user_id => @user.id), 
   class: 'profile-link', method: :post %>
- 
- <% pending_friends.each do |f|  %>
-  <%= f.friend_id==@user.id  %>
 
+  <h3>Pending friend requests:</h3>
+
+  <% @user.pending_friends.each do |f|  %>
+    <%= f.name  %>
   <% end  %>
+  <br>
+  <br>
+
+  <h3>Pending friend invitations:</h3>
+
+  <% @user.friend_requests.each do |f|  %>
+    <%= f.name  %> <%= link_to 'invite', invitation_path(:first_step, :user_id => user.id), class: 'profile-link', method: :post %>
+  <% end  %>
+
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">
