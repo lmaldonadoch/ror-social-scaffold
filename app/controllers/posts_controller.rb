@@ -24,8 +24,6 @@ class PostsController < ApplicationController
     p '********************Time line posts******************'
     p current_user.id
     p current_user.name
-    # p @timeline_posts
-
     friend_posts = []
 
     current_user.friends.each do |friend|
@@ -40,11 +38,7 @@ class PostsController < ApplicationController
     @timeline_posts << friend_posts
 
     @timeline_posts.flatten!
-
-    # current_user.friends.each do |friend|
-    #   @timeline_posts << friend.posts
-    # end
-    # @timeline_posts
+   
   end
 
   def post_params
