@@ -6,6 +6,10 @@
 
 ![screenshot1](images/screenshot02.png)
 
+![screenshot1](images/accept_reject.jpg)
+
+![screenshot1](images/invite.jpg)
+
 ## Built With
 
 - Ruby v2.6.5
@@ -31,6 +35,16 @@ Install the needed gems:
 $ bundle install
 ```
 
+Next, initialize the pre-build database with seeds :
+
+```
+$ rake db:seed
+
+and then
+
+$ rake db:setup
+
+```
 Next, migrate the database:
 
 ```
@@ -54,7 +68,11 @@ Postgres: >=9.5
 ### Run tests
 
 ```
-    rpsec spec/features/users/create_spec.rb
+    rpsec spec/features/users/users_spec.rb
+
+	and 
+
+	rpsec spec/features/users/friends_spec.rb
 ```
 
 ## Authors
