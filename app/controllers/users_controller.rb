@@ -2,17 +2,17 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-	@users = User.all
-	@users.each do |user|
-		user.gravatar_url='https://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(user.email)
-		user.save
-	end
+    @users = User.all
+    @users.each do |user|
+      user.gravatar_url = 'https://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(user.email)
+      user.save
+    end
   end
 
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.includes(:comments).ordered_by_most_recent
-	@user.gravatar_url='https://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(@user.email)
+    @user.gravatar_url = 'https://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(@user.email)
   end
 
   def invitation

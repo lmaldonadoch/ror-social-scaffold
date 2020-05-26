@@ -38,7 +38,6 @@ class PostsController < ApplicationController
     @timeline_posts << friend_posts
 
     @timeline_posts.flatten!
-   
   end
 
   def post_params

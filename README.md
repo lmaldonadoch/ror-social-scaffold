@@ -39,12 +39,15 @@ Next, initialize the pre-build database with seeds :
 
 ```
 $ rake db:seed
+```
 
 and then
 
+```
 $ rake db:setup
 
 ```
+
 Next, migrate the database:
 
 ```
@@ -70,7 +73,7 @@ Postgres: >=9.5
 ```
     rpsec spec/features/users/users_spec.rb
 
-	and 
+	and
 
 	rpsec spec/features/users/friends_spec.rb
 ```
