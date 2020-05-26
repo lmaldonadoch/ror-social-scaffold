@@ -12,9 +12,16 @@ class UsersController < ApplicationController
 
   def invitation
     p params
-    invite = Friendship.new(user_id: current_user.id, friend_id: params[:user_id], confirmed: 0)
+	invite = Friendship.new(user_id: current_user.id, 
+		friend_id: params[:user_id], confirmed: 0)
     invite.save
     redirect_to users_path, notice: 'The friend invitation was sent!'
+  end
+
+  def accept
+	p params
+	accept_invite = Friendship.find(user_id: current_user.id,friend_id: params[:friends_id])
+	#accept_invite.save
   end
 
   private
@@ -23,3 +30,5 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :id)
   end
 end
+
+

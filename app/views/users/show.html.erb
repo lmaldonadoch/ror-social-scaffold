@@ -16,8 +16,9 @@
   <h3>Pending friend invitations:</h3>
 
   <% @user.friend_requests.each do |f|  %>
-    <%= f.name  %> <%= link_to 'invite', invitation_path(:first_step, :user_id => user.id), class: 'profile-link', method: :post %>
-  <% end  %>
+    <%= f.name  %> 
+	<%= link_to 'Accept', accept_path(:first_step, :friends_id => f.id),  method: :put %>
+	    <% end  %>
 
   <article class="timeline">
     <h3>Recent posts:</h3>
