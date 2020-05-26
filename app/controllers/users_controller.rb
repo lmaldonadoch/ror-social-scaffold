@@ -19,9 +19,11 @@ class UsersController < ApplicationController
   end
 
   def accept
-	p params
-	accept_invite = Friendship.find(user_id: current_user.id,friend_id: params[:friends_id])
-	#accept_invite.save
+    accept_invite = current_user.friend_requests.select { |invite| invite.id == params[:friends_id].to_i}
+    invitation = Friendship.find_by(friend_id: current_user.id, user_id: params[:friends_id].to_i)
+    invitation.confirmed = 1
+    invitation.save
+    redirect_to user_path(current_user.id)
   end
 
   private
