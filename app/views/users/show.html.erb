@@ -1,5 +1,14 @@
 <section class="user-section">
-  <h2><%= "Name: #{@user.name}" %></h2> <%= link_to 'invite', invitation_path(:first_step, :user_id => @user.id), class: 'profile-link', method: :post %>
+  <h2><%= "Name: #{@user.name}" %></h2> 
+  <%= link_to 'invite', 
+  invitation_path(:first_step, 
+  :user_id => @user.id), 
+  class: 'profile-link', method: :post %>
+ 
+ <% pending_friends.each do |f|  %>
+  <%= f.friend_id==@user.id  %>
+
+  <% end  %>
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">
