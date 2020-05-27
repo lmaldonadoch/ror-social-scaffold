@@ -6,7 +6,9 @@
         Name: <%= user.name %>
         <span class="profile-link">
           <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
-		      <%= link_to 'invite', invitation_path(:first_step, :user_id => user.id), class: 'profile-link', method: :post %>
+          <% unless user.id == current_user.id %>
+		        <%= link_to 'invite', invitation_path(:first_step, :user_id => user.id), class: 'profile-link', method: :post %>
+          <% end %>
         </span>
       </li>
     <% end %>

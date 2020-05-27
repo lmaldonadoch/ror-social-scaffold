@@ -21,17 +21,12 @@ class PostsController < ApplicationController
 
   def timeline_posts
     user_posts = current_user.posts
-    p '********************Time line posts******************'
-    p current_user.id
-    p current_user.name
     friend_posts = []
 
     current_user.friends.each do |friend|
       friend_posts << friend.posts
     end
-
-    p friend_posts
-
+    
     @timeline_posts = []
 
     @timeline_posts << user_posts
