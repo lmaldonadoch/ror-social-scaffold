@@ -22,7 +22,11 @@ class UsersController < ApplicationController
       invite.save
       redirect_to users_path, notice: 'The friend invitation was sent!'
     else
-      redirect_to user_path(current_user.id), alert: 'There is a pending friend request from this user. Please accept it here'
+      if current_user.friend_requests.include?(User.find(params[:user_id]))
+        redirect_to user_path(current_user.id), alert: 'There is a pending friend request from this user. Please accept it here'
+      else
+        redirect_to users_path, alert: 'You have already invited this friend to connect. Please wait for their response.'
+      end
     end
   end
 

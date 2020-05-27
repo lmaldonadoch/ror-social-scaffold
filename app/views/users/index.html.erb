@@ -9,7 +9,7 @@
           <% if user.friend?(current_user)%>
             <span class = 'profile-link'> You are friend with <%= user.name %> ! </span>
           <% else %>
-            <% unless user.id == current_user.id %>
+            <% unless user.id == current_user.id || current_user.pending_friends.include?(user) || current_user.friend_requests.include?(user)%>
               <%= link_to 'invite', invitation_path(:first_step, :user_id => user.id), class: 'profile-link', method: :post %>
             <% end %>
           <% end %>
