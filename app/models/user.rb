@@ -24,16 +24,15 @@ class User < ApplicationRecord
   end
 
   def pending_friends
-    friends_array = friendships.map do |friendship|
-	  friendship.friend unless friendship.confirmed == 1 &&
-	    friendship.friendship_requester == self.id 
+    pending_friends_array = friendships.map do |friendship|
+	  friendship.friend unless friendship.confirmed == 1 || friendship.friendship_requester != self.id
     end
-    friends_array.compact
+    pending_friends_array.compact
   end
 
   def friend_requests
     friend_requests = inverse_friendships.map do |friendship|
-      friendship.user unless friendship.confirmed == 1
+      friendship.user unless friendship.confirmed == 1 || friendship.friendship_requester == self.id || friendship.user_id == self.id
     end
     friend_requests.compact
   end
