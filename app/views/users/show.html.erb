@@ -5,22 +5,24 @@
   <% unless @user.id == current_user.id%>
     <%= link_to 'invite', invitation_path(:first_step, :user_id => @user.id), class: 'profile-link', method: :post %>
   <% end %>
-  <h3>Pending friend requests:</h3>
+  
+   <% if @user.id == current_user.id%>
+  		<h3>Pending friend requests:</h3>
 
-  <% @user.pending_friends.each do |f|  %>
-    <%= f.name  %>
-  <% end  %>
-  <br>
-  <br>
+  		<% @user.pending_friends.each do |f|  %>
+    		<%= f.name  %>
+  			<% end  %>
+			<br>
+			<br>
 
-  <h3>Pending friend invitations:</h3>
+		<h3>Pending friend invitations:</h3>
 
-  <% @user.friend_requests.each do |f|  %>
-    <%= f.name  %> <br>
-	<%= link_to 'Accept', accept_path(:first_step, :friends_id => f.id),class: 'profile-link', method: :put %><br>
-	<%= link_to 'Reject', reject_path(:first_step, :friends_id => f.id),class: 'profile-link', method: :delete %><br>
-	    <% end  %>
-
+		<% @user.friend_requests.each do |f|  %>
+			<%= f.name  %> <br>
+			<%= link_to 'Accept', accept_path(:first_step, :friends_id => f.id),class: 'profile-link', method: :put %><br>
+			<%= link_to 'Reject', reject_path(:first_step, :friends_id => f.id),class: 'profile-link', method: :delete %><br>
+				<% end  %>
+<% end  %>
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">
