@@ -11,7 +11,7 @@ image = 'https://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(u1.email)
 u1.gravatar_url = image
 u1.save
 
-u1 = User.new(email: 'lmaldonadoch@gmail.com', name: 'Luis', password: '123456', password_confirmation: '123456')
+u1 = User.new(email: 'luis@gmail.com', name: 'Luis', password: '123456', password_confirmation: '123456')
 image = 'https://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(u1.email)
 u1.gravatar_url = image
 u1.save

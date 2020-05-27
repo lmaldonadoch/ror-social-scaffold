@@ -7,13 +7,13 @@
 
 > On this milestone, we achieved the creation of a 2 record per relationship architecture for the database based on [the article by Quassnoi](https://explainextended.com/2009/03/07/selecting-friends/) where he explains and shows why this model is better than a cross-checking architecture to eliminate the possibility of multiple friend requests with the same 2 users. We polished the front-end to give users all the features expected in a social network; like send friend requests, accept/deny requests, see posts in chronological order, create posts, add comments to posts, etc.
 
-![screenshot1](images/screenshot01.png)
-
 ![screenshot1](images/screenshot02.png)
+
+![screenshot1](images/screenshot01.png)
 
 ![screenshot1](images/screenshot03.png)
 
-![screenshot1](images/screenshot05.png)
+![screenshot1](images/screenshot04.png)
 
 ## Built With
 
