@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.all.includes(:posts,:friends).limit(5)
+    @users = User.all.includes(:friendships, posts: %i[comments likes])
     @users.each do |user|
       user.gravatar_url = 'https://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(user.email)
       user.save
@@ -11,15 +11,17 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.includes(:comments,:likes).ordered_by_most_recent
+    @posts = @user.posts.includes(:comments, :likes).ordered_by_most_recent
     @user.gravatar_url = 'https://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(@user.email)
   end
 
   def invitation
     if !(current_user.pending_friends.include?(User.find(params[:user_id])) ||
       current_user.friend_requests.include?(User.find(params[:user_id])))
-      invite = Friendship.new(user_id: current_user.id, friend_id: params[:user_id], confirmed: 0, friendship_requester: current_user.id)
-      inverse_invite= Friendship.new(user_id: params[:user_id], friend_id:  current_user.id, confirmed: 0, friendship_requester: current_user.id)	
+      invite = Friendship.new(user_id: current_user.id, friend_id: params[:user_id],
+                              confirmed: 0, friendship_requester: current_user.id)
+      inverse_invite = Friendship.new(user_id: params[:user_id], friend_id: current_user.id,
+                                      confirmed: 0, friendship_requester: current_user.id)
       invite.save
       inverse_invite.save
       redirect_to users_path, notice: 'The friend invitation was sent!'
@@ -32,7 +34,11 @@ class UsersController < ApplicationController
 
   def accept
     invitations = []
-    invitations << Friendship.where(friendship_requester: params[:friends_id].to_i, friend_id: current_user.id).or(Friendship.where(friendship_requester: params[:friends_id].to_i, user_id: current_user.id))
+    invitations << Friendship.where(friendship_requester: params[:friends_id].to_i,
+                                    friend_id: current_user.id).or(Friendship.where(
+                                                                     friendship_requester: params[:friends_id].to_i,
+                                                                     user_id: current_user.id
+                                                                   ))
     invitations.flatten!
     invitations.each do |invitation|
       invitation.confirmed = 1
@@ -45,14 +51,15 @@ class UsersController < ApplicationController
     # invitation = Friendship.find_by(friend_id: current_user.id, user_id: params[:friends_id].to_i)
     # invitation.destroy
     # redirect_to user_path(current_user.id), notice: 'The friend invitation has been rejected!'
-  
-	
-	rejections = []
-    rejections << Friendship.where(friendship_requester: params[:friends_id].to_i, friend_id: current_user.id).or(Friendship.where(friendship_requester: params[:friends_id].to_i, user_id: current_user.id))
+
+    rejections = []
+    rejections << Friendship.where(friendship_requester: params[:friends_id].to_i,
+                                   friend_id: current_user.id).or(Friendship.where(
+                                                                    friendship_requester: params[:friends_id].to_i,
+                                                                    user_id: current_user.id
+                                                                  ))
     rejections.flatten!
-    rejections.each do |rejection|
-      rejection.destroy
-     end
+    rejections.each(&:destroy)
     redirect_to user_path(current_user.id), notice: 'The friend invitation has been rejected!'
   end
 
