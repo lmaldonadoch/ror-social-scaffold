@@ -1,6 +1,6 @@
 <section class="user-section">
   <%= image_tag(@user.gravatar_url, size: '100x100')%>
-  <h2><%= "#{@user.name}" %></h2> 
+  <h2><%= "#{@user.name}" %></h2> <br><br>
 
   <% if !(@user.id == current_user.id || @user.friend?(current_user))%>
     <%= link_to 'invite', invitation_path(:first_step, :user_id => @user.id), class: 'profile-link', method: :post %>
@@ -9,22 +9,27 @@
   <% end %>
   
    <% if @user.id == current_user.id%>
-  		<h3>Pending friend requests:</h3>
-
+  	<% unless @user.pending_friends.empty? %>
+<u><h3>Pending friend requests:</h3></u><br>
   		<% @user.pending_friends.each do |f|  %>
-    		<%= f.name  %>
+		  
+    		<%= f.name  %> <br>
   			<% end  %>
 			<br>
 			<br>
 
-		<h3>Pending friend invitations:</h3>
-
+<% end  %>	
+<% unless @user.friend_requests.empty? %>	
+<u><h3>Pending friend invitations:</h3></u><br>
 		<% @user.friend_requests.each do |f|  %>
-			<%= f.name  %> <br>
-			<%= link_to 'Accept', accept_path(:first_step, :friends_id => f.id),class: 'profile-link', method: :put %><br>
+		
+			<b><%= f.name  %></b> <br>
+			<%= link_to 'Accept', accept_path(:first_step, :friends_id => f.id),class: 'profile-link', method: :put %>
 			<%= link_to 'Reject', reject_path(:first_step, :friends_id => f.id),class: 'profile-link', method: :delete %><br>
 				<% end  %>
 <% end  %>
+<% end  %>
+
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">

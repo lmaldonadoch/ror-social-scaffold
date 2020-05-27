@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap");
 
-$primary-color-dark: #689f38;
-$primary-color: #8bc34a;
-$primary-color-light: #dcedc8;
-$primary-color-text: #212121;
+$primary-color-dark: #035EE5 ;
+$primary-color: #5F9CF6 ;
+$primary-color-light: #FFFFFF;
+$primary-color-text: #A9A9A9;
 $divider-color: #bdbdbd;
 
 * {
@@ -32,8 +32,9 @@ ul {
 
 a {
   text-decoration: none;
-  color: $primary-color-text;
+  color: #FFB74C;
 }
+
 
 .nav {
   display: flex;
@@ -297,7 +298,7 @@ form {
     font-size: 0.8em;
     margin: 0 0 8px 0;
 	color: $primary-color-dark;
-	text-transform: capitalize
+	
   }
 }
 
