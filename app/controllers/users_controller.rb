@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.all.includes(:posts)
+    @users = User.all.includes(:posts,:friends).limit(5)
     @users.each do |user|
       user.gravatar_url = 'https://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(user.email)
       user.save
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.includes(:comments).ordered_by_most_recent
+    @posts = @user.posts.includes(:comments,:likes).ordered_by_most_recent
     @user.gravatar_url = 'https://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(@user.email)
   end
 
