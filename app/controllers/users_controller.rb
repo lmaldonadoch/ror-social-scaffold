@@ -18,9 +18,10 @@ class UsersController < ApplicationController
   def invitation
     if !(current_user.pending_friends.include?(User.find(params[:user_id])) ||
       current_user.friend_requests.include?(User.find(params[:user_id])))
-      invite = Friendship.new(user_id: current_user.id,
-                              friend_id: params[:user_id], confirmed: 0)
-      invite.save
+      invite = Friendship.new(user_id: current_user.id, friend_id: params[:user_id], confirmed: 0)
+      inverse_invite= Friendship.new(user_id: params[:user_id], friend_id:  current_user.id, confirmed: 0)	
+	  invite.save
+	  inverse_invite.save
       redirect_to users_path, notice: 'The friend invitation was sent!'
     elsif current_user.friend_requests.include?(User.find(params[:user_id]))
       redirect_to user_path(current_user.id), alert: 'There is a pending friend request from this user. Accept it here'

@@ -20,9 +20,9 @@ class User < ApplicationRecord
     friends_array = friendships.map do |friendship|
       friendship.friend if friendship.confirmed == 1
     end
-    friends_array.concat(inverse_friendships.map do |friendship|
-      friendship.user if friendship.confirmed == 1
-    end)
+    # friends_array.concat(inverse_friendships.map do |friendship|
+    #   friendship.user if friendship.confirmed == 1
+    # end)
     friends_array.compact
   end
 
