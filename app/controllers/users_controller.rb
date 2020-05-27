@@ -42,8 +42,17 @@ class UsersController < ApplicationController
   end
 
   def reject
-    invitation = Friendship.find_by(friend_id: current_user.id, user_id: params[:friends_id].to_i)
-    invitation.destroy
+    # invitation = Friendship.find_by(friend_id: current_user.id, user_id: params[:friends_id].to_i)
+    # invitation.destroy
+    # redirect_to user_path(current_user.id), notice: 'The friend invitation has been rejected!'
+  
+	
+	rejections = []
+    rejections << Friendship.where(friendship_requester: params[:friends_id].to_i, friend_id: current_user.id).or(Friendship.where(friendship_requester: params[:friends_id].to_i, user_id: current_user.id))
+    rejections.flatten!
+    rejections.each do |rejection|
+      rejection.destroy
+     end
     redirect_to user_path(current_user.id), notice: 'The friend invitation has been rejected!'
   end
 
