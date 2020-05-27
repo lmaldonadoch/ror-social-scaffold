@@ -2,7 +2,7 @@
   <%= image_tag(@user.gravatar_url, size: '100x100')%>
   <h2><%= "#{@user.name}" %></h2> 
 
-  <% unless @user.id == current_user.id%>
+  <% unless @user.id == current_user.id || @user.friend?(current_user)%>
     <%= link_to 'invite', invitation_path(:first_step, :user_id => @user.id), class: 'profile-link', method: :post %>
   <% end %>
   
@@ -27,7 +27,7 @@
     <h3>Recent posts:</h3>
     <ul class="posts">
       <% @user.posts.each do |post| %>
-        <%next unless post.user_id == current_user.id%>
+        <%next unless post.user_id == current_user.id || @user.friend?(current_user)%>
         <li class="post">
           <div>
             <div class='post-liking'>
