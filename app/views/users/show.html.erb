@@ -13,7 +13,9 @@
 <u><h3>Pending friend requests:</h3></u><br>
   		<% @user.pending_friends.each do |f|  %>
 		  
-    		<%= f.name  %> <br>
+    		<div class="user-invite show-requests">
+          <%= link_to f.name, user_path(f.id)  %>
+        </div> <br>
   			<% end  %>
 			<br>
 			<br>
@@ -22,8 +24,9 @@
 <% unless @user.friend_requests.empty? %>	
 <u><h3>Pending friend invitations:</h3></u><br>
 		<% @user.friend_requests.each do |f|  %>
-		
-			<b><%= f.name  %></b> <br>
+      <div class="user-friend show-requests">
+        <%= link_to f.name, user_path(f.id)  %>
+      </div>
 			<%= link_to 'Accept', accept_path(:first_step, :friends_id => f.id),class: 'profile-link', method: :put %>
 			<%= link_to 'Reject', reject_path(:first_step, :friends_id => f.id),class: 'profile-link', method: :delete %><br>
 				<% end  %>
