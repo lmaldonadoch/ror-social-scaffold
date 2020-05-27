@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     current_user.friends.each do |friend|
       friend_posts << friend.posts
     end
-    
+
     @timeline_posts = []
 
     @timeline_posts << user_posts
