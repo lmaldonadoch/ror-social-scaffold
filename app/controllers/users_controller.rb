@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.all
+    @users = User.all.includes(:posts)
     @users.each do |user|
       user.gravatar_url = 'https://www.gravatar.com/avatar/' + Digest::MD5.hexdigest(user.email)
       user.save
@@ -18,10 +18,10 @@ class UsersController < ApplicationController
   def invitation
     if !(current_user.pending_friends.include?(User.find(params[:user_id])) ||
       current_user.friend_requests.include?(User.find(params[:user_id])))
-      invite = Friendship.new(user_id: current_user.id, friend_id: params[:user_id], confirmed: 0)
-      inverse_invite= Friendship.new(user_id: params[:user_id], friend_id:  current_user.id, confirmed: 0)	
-	  invite.save
-	  inverse_invite.save
+      invite = Friendship.new(user_id: current_user.id, friend_id: params[:user_id], confirmed: 0, friendship_requester: current_user.id)
+      inverse_invite= Friendship.new(user_id: params[:user_id], friend_id:  current_user.id, confirmed: 0, friendship_requester: current_user.id)	
+      invite.save
+      inverse_invite.save
       redirect_to users_path, notice: 'The friend invitation was sent!'
     elsif current_user.friend_requests.include?(User.find(params[:user_id]))
       redirect_to user_path(current_user.id), alert: 'There is a pending friend request from this user. Accept it here'
@@ -31,9 +31,13 @@ class UsersController < ApplicationController
   end
 
   def accept
-    invitation = Friendship.find_by(friend_id: current_user.id, user_id: params[:friends_id].to_i)
-    invitation.confirmed = 1
-    invitation.save
+    invitations = []
+    invitations << Friendship.where(friendship_requester: params[:friends_id].to_i, friend_id: current_user.id).or(Friendship.where(friendship_requester: params[:friends_id].to_i, user_id: current_user.id))
+    invitations.flatten!
+    invitations.each do |invitation|
+      invitation.confirmed = 1
+      invitation.save
+    end
     redirect_to user_path(current_user.id), notice: 'The friend invitation has been approved!'
   end
 
