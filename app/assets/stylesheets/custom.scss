@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap");
 
-$primary-color-dark: #689f38;
-$primary-color: #8bc34a;
-$primary-color-light: #dcedc8;
-$primary-color-text: #212121;
+$primary-color-dark: #035ee5;
+$primary-color: #5f9cf6;
+$primary-color-light: #ffffff;
+$primary-color-text: #696969;
 $divider-color: #bdbdbd;
 
 * {
@@ -18,6 +18,7 @@ body {
   position: relative;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
+  color: $primary-color-text;
 }
 
 h1,
@@ -32,7 +33,7 @@ ul {
 
 a {
   text-decoration: none;
-  color: $primary-color-text;
+  color: $primary-color-dark;
 }
 
 .nav {
@@ -54,6 +55,18 @@ a {
         a {
           color: #fff;
         }
+      }
+    }
+  }
+  .sign-user {
+    float: right;
+    margin: 0 15px;
+    white-space: nowrap;
+
+    .active {
+      a {
+        color: #fff;
+        white-space: nowrap;
       }
     }
   }
@@ -169,7 +182,7 @@ form {
 }
 
 .new_post,
-.new_comment{
+.new_comment {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -226,6 +239,11 @@ form {
     margin: 16px 0;
     display: flex;
     flex-direction: column;
+
+    a {
+      color: $primary-color-light;
+      margin-bottom: 15px;
+    }
   }
 
   .post-attribution {
@@ -241,7 +259,7 @@ form {
   .post-liking {
     float: right;
 
-    a{
+    a {
       color: $primary-color-dark;
       font-weight: bold;
       font-size: 0.9em;
@@ -255,6 +273,7 @@ form {
   .post-content {
     font-size: 1.1em;
     padding: 4px 0;
+    margin-top: 10px;
   }
 
   .post-comments-section {
@@ -271,7 +290,7 @@ form {
       padding: 10px;
 
       p {
-        font-size: .8em;
+        font-size: 0.8em;
         width: 90%;
       }
       span {
@@ -291,12 +310,51 @@ form {
     margin-bottom: 16px;
     text-transform: capitalize;
     font-size: 1.2em;
-  }
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
 
-  .profile-link {
-    font-size: 0.8em;
-    margin: 0 0 8px 0;
-    color: $primary-color-dark;
+    .user-info {
+      display: flex;
+      flex-direction: column;
+      margin-left: 15px;
+    }
+  }
+}
+
+.profile-link {
+  font-size: 0.8em;
+  margin: 0 0 8px 0;
+  color: $primary-color-dark;
+  background: #ffb74c;
+  padding: 6px;
+  border-radius: 25px;
+}
+
+.user-invite {
+  font-size: 0.8em;
+  margin: 0 0 8px 0;
+  color: $primary-color-light;
+  background: #ff7854;
+  padding: 6px;
+  border-radius: 25px;
+}
+
+.user-friend {
+  font-size: 0.8em;
+  margin: 0 0 8px 0;
+  color: $primary-color-light;
+  background: #a584ff;
+  padding: 6px;
+  border-radius: 25px;
+}
+
+.show-requests {
+  width: fit-content;
+  font-size: 1em;
+
+  a {
+    color: $primary-color-light;
   }
 }
 

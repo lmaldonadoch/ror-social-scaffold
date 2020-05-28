@@ -1,0 +1,8 @@
+example_id                                   | status | run_time        |
+-------------------------------------------- | ------ | --------------- |
+./spec/features/users/friends_spec.rb[1:1:1] | passed | 0.08956 seconds |
+./spec/features/users/friends_spec.rb[1:2:1] | passed | 1.63 seconds    |
+./spec/features/users/login_spec.rb[1:1:1]   | passed | 1.03 seconds    |
+./spec/features/users/users_spec.rb[1:1]     | passed | 4.8 seconds     |
+./spec/features/users/users_spec.rb[2:1:1]   | passed | 0.07837 seconds |
+./spec/features/users/users_spec.rb[2:2:1]   | passed | 0.10883 seconds |

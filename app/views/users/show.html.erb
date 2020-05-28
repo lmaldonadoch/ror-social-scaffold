@@ -1,9 +1,16 @@
 <section class="user-section">
-  <h2><%= "Name: #{@user.name}" %></h2>
+  <%= image_tag(@user.gravatar_url, size: '100x100')%>
+  <h2><%= @user.name %></h2> <br><br>
+
+  <%= user_index_friendship_status(@user)%>
+  
+  <%= pending_friends_request(@user)%>
+  
+  <%= friend_requests(@user)%>
+
   <article class="timeline">
-    <h3>Recent posts:</h3>
-    <ul class="posts">
-      <%= render @posts %>
-    </ul>
+    
+   <%= post_rendering(@user)%>
+        
   </article>
 </section>

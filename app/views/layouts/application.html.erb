@@ -9,7 +9,10 @@
   </head>
   <body>
     <nav class="nav">
-      <%= link_to 'Stay in touch', root_path %>
+      <% if current_user %>
+        <%= link_to 'Profile', user_path(current_user.id) %>
+      <% end %>
+
       <div class="menu">
         <div class="menu-item">
           <%= menu_link_to 'Timeline', posts_path %>
@@ -18,11 +21,13 @@
           <%= menu_link_to 'All users', users_path %>
         </div>
       </div>
-      <% if current_user %>
-        <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'Sign in', user_session_path %>
-      <% end %>
+      <div class="sign-user">
+        <% if current_user %>
+          <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to 'Sign in', user_session_path %>
+        <% end %>
+      </div>
     </nav>
     <% if notice.present? %>
       <div class="notice">
