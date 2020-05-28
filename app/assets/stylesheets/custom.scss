@@ -239,6 +239,11 @@ form {
     margin: 16px 0;
     display: flex;
     flex-direction: column;
+
+    a {
+      color: $primary-color-light;
+      margin-bottom: 15px;
+    }
   }
 
   .post-attribution {
@@ -268,6 +273,7 @@ form {
   .post-content {
     font-size: 1.1em;
     padding: 4px 0;
+    margin-top: 10px;
   }
 
   .post-comments-section {
