@@ -52,11 +52,14 @@ module ApplicationHelper
 
   def post_rendering(user)
     if user.posts.empty?
-      content_tag(:h3, 'You have no posts yet!')
+	  content_tag(:h3, 'You have no posts yet!')
+	 
     else
       posts = []
       user.posts.each do |post|
-        posts << post if post.user_id == current_user.id || user.friend?(current_user)
+		posts << post 
+	  end
+	  render 'posts/user_show_post', posts: posts
     end
   end
 end
