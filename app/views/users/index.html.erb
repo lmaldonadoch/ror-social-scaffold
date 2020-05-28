@@ -1,20 +1,5 @@
 <section class="users-section">
   <ul class="users-list">
-    <% @users.each do |user| %>
-      <li>
-        <%= image_tag(user.gravatar_url, size: '50x50')%>
-        Name: <%= user.name %>
-        <span class="profile-link">
-          <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
-          <% if user.friend?(current_user)%>
-            <span class = 'profile-link'> You are friend with <%= user.name %> ! </span>
-          <% else %>
-            <% unless user.id == current_user.id || current_user.pending_friends.include?(user) || current_user.friend_requests.include?(user)%>
-              <%= link_to 'invite', invitation_path(:first_step, :user_id => user.id), class: 'profile-link', method: :post %>
-            <% end %>
-          <% end %>
-        </span>
-      </li>
-    <% end %>
+    <%= render 'user_index_show'%>
   </ul>
 </section>

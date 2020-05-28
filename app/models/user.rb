@@ -20,22 +20,21 @@ class User < ApplicationRecord
     friends_array = friendships.map do |friendship|
       friendship.friend if friendship.confirmed == 1
     end
-    friends_array.concat(inverse_friendships.map do |friendship|
-      friendship.user if friendship.confirmed == 1
-    end)
     friends_array.compact
   end
 
   def pending_friends
-    friends_array = friendships.map do |friendship|
-      friendship.friend unless friendship.confirmed == 1
+    pending_friends_array = friendships.map do |friendship|
+      friendship.friend unless friendship.confirmed == 1 || friendship.friendship_requester != id
     end
-    friends_array.compact
+    pending_friends_array.compact
   end
 
   def friend_requests
     friend_requests = inverse_friendships.map do |friendship|
-      friendship.user unless friendship.confirmed == 1
+      unless friendship.confirmed == 1 || friendship.friendship_requester == id || friendship.user_id == id
+        friendship.user
+      end
     end
     friend_requests.compact
   end
