@@ -1,0 +1,7 @@
+<h3>Pending friend requests: </h3> <br>
+
+<% users.each do |user|%>
+  <div class="user-invite show-requests">
+    <%= link_to user.name, user_path(:first_step, :user_id => user.id)%>
+  </div>
+<% end %>

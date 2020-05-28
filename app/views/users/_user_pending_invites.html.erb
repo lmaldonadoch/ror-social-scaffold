@@ -1,0 +1,9 @@
+<h3>Pending friend invitations: </h3> <br>
+
+<% users.each do |user|%>
+  <div class="user-friend show-requests">
+    <%= link_to user.name, user_path(:first_step, :user_id => user.id)%>
+  </div>
+  <span class = 'profile-link'><%= link_to 'Accept', accept_path(:first_step, :friends_id => user.id), method: :put%></span>
+  <span class = 'profile-link'><%= link_to 'Reject', accept_path(:first_step, :friends_id => user.id), method: :destroy%></span>
+<% end %>

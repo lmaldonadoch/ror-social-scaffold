@@ -26,32 +26,27 @@ module ApplicationHelper
     end
   end
 
-  def pending_friends(user)
-	if user.id == current_user.id
-		unless user.pending_friends.empty?
-			content_tag(:h3, ("Pending friend requests:"))
-
-			user.pending_friends.each do |f|  
-				# content_tag(:div, 
-			content_tag(:p, (link_to f.user.name, user_path(f.user.id)))
-			# ,class: ["user-invite","show-requests"])
-			end 
-		end 	
-	end
+  def pending_friends_request(user)
+    if user.id == current_user.id
+      users = []
+      unless user.pending_friends.empty?
+        user.pending_friends.each do |user|
+          users << user
+        end
+        render 'user_friend_requests', users: users
+      end
+    end
   end
 
   def friend_requests(user)
-	if user.id == current_user.id
-		unless user.friend_requests.empty?
-			content_tag(:h3, ("Pending friend invitations:"))
-
-			# user.friend_requests.each do |f|  
-			# 	content_tag(:div, content_tag(:p, (link_to f.name, user_path(f.id))),class: ["user-invite","show-requests"])
-			# 	content_tag(:span, (link_to 'Accept', accept_path(:friends_id => f.id), method: :put), class: 'profile-link')
-			# 	content_tag(:span, (link_to 'Reject', reject_path(:friends_id => f.id), method: :delete), class: 'profile-link')
-			# end 
-		end 	
-	end
+    if user.id == current_user.id
+      users = []
+      unless user.friend_requests.empty?
+        user.friend_requests.each do |user|
+          users << user
+        end 
+        render 'user_pending_invites', users: users
+      end
+    end
   end
-
 end

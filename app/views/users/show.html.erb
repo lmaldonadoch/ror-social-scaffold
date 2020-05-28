@@ -4,8 +4,9 @@
 
   <%= user_index_friendship_status(@user)%>
   
-  <%= pending_friends(@user)%>
-  <%= friend_requests(@user)%>
+    <%= pending_friends_request(@user)%>
+    <%= friend_requests(@user)%>
+
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">
