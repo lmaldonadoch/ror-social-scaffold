@@ -5,7 +5,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
-> On this milestone, we achieved the creation of a 2 record per relationship architecture for the database based on [the article by Quassnoi](https://explainextended.com/2009/03/07/selecting-friends/) where he explains and shows why this model is better than a cross-checking architecture to eliminate the possibility of multiple friend requests with the same 2 users. We polished the front-end to give users all the features expected in a social network; like send friend requests, accept/deny requests, see posts in chronological order, create posts, add comments to posts, etc.
+> On this milestone, we finally deployed our app to Heroku so that it can be accessed everywhere. We managed to finish creating all the Social Network functionality and features for an MVP deployment with industry-standard style and high-quality code. You can access the live version of the website from [here](https://murmuring-thicket-07012.herokuapp.com/users/sign_in)
 
 ![screenshot1](images/screenshot02.png)
 
@@ -15,9 +15,9 @@
 
 ![screenshot1](images/screenshot04.png)
 
-## Live Linke
+## Live Version
 
-[Livelink] https://murmuring-thicket-07012.herokuapp.com/users/sign_in
+[Live Version](https://murmuring-thicket-07012.herokuapp.com/users/sign_in)
 
 ## Built With
 
@@ -56,7 +56,6 @@ and then
 $ rake db:setup
 
 ```
-
 
 Next, migrate the database:
 
@@ -114,8 +113,6 @@ Give a ⭐️ if you like this project!
 ## Acknowledgments
 
 - Project requested by [Microverse Program](https://www.microverse.org/).
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
