@@ -2,35 +2,30 @@
   <%= image_tag(@user.gravatar_url, size: '100x100')%>
   <h2><%= "#{@user.name}" %></h2> <br><br>
 
-  <% if !(@user.id == current_user.id || @user.friend?(current_user))%>
-    <%= link_to 'invite', invitation_path(:first_step, :user_id => @user.id), class: 'profile-link', method: :post %>
-  <% elsif @user.friend?(current_user)%>
-    You are friends with <%= @user.name %> !
-  <% end %>
+  <%= user_index_friendship_status(@user)%>
   
-   <% if @user.id == current_user.id%>
-  	<% unless @user.pending_friends.empty? %>
-<u><h3>Pending friend requests:</h3></u><br>
-  		<% @user.pending_friends.each do |f|  %>
-		  
-    		<div class="user-invite show-requests">
+  <% if @user.id == current_user.id%>
+    <% unless @user.pending_friends.empty? %>
+      <u><h3>Pending friend requests:</h3></u><br>
+
+      <% @user.pending_friends.each do |f|  %>
+        <div class="user-invite show-requests">
           <%= link_to f.name, user_path(f.id)  %>
         </div> <br>
-  			<% end  %>
-			<br>
-			<br>
+      <% end  %><br><br>
 
-<% end  %>	
-<% unless @user.friend_requests.empty? %>	
-<u><h3>Pending friend invitations:</h3></u><br>
-		<% @user.friend_requests.each do |f|  %>
-      <div class="user-friend show-requests">
-        <%= link_to f.name, user_path(f.id)  %>
-      </div>
-			<%= link_to 'Accept', accept_path(:first_step, :friends_id => f.id),class: 'profile-link', method: :put %>
-			<%= link_to 'Reject', reject_path(:first_step, :friends_id => f.id),class: 'profile-link', method: :delete %><br>
-				<% end  %>
-<% end  %>
+    <% end  %>	
+    <% unless @user.friend_requests.empty? %>	
+    <u><h3>Pending friend invitations:</h3></u><br>
+    
+      <% @user.friend_requests.each do |f|  %>
+        <div class="user-friend show-requests">
+          <%= link_to f.name, user_path(f.id)  %>
+        </div>
+        <%= link_to 'Accept', accept_path(:first_step, :friends_id => f.id),class: 'profile-link', method: :put %>
+        <%= link_to 'Reject', reject_path(:first_step, :friends_id => f.id),class: 'profile-link', method: :delete %><br>
+      <% end  %>
+    <% end  %>
 <% end  %>
 
   <article class="timeline">

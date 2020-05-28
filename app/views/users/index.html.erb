@@ -7,15 +7,7 @@
           <b><i><%= user.name %></b></i>
           <span>
             <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
-            <% if user.friend?(current_user)%>
-              <span class = 'user-friend'> You are friend with <%= user.name %> ! </span>
-            <% else %>
-              <% if current_user.pending_friends.include?(user) %>
-                <span class="user-invite">Your friend request is pending</span>
-              <% else user.id == current_user.id || current_user.pending_friends.include?(user) || current_user.friend_requests.include?(user)%>
-                <%= link_to 'invite', invitation_path(:first_step, :user_id => user.id), class: 'profile-link', method: :post %>
-              <% end %>
-            <% end %>
+            <%= user_index_friendship_status(user)%>
           </span>
         </div>
       </li>

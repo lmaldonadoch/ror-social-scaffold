@@ -15,4 +15,14 @@ module ApplicationHelper
       link_to('Like!', post_likes_path(post_id: post.id), method: :post)
     end
   end
+
+  def user_index_friendship_status(user)
+    if user.friend?(current_user)
+      content_tag(:span, ("You are friend with #{user.name}"), class: 'user-friend')
+    elsif current_user.pending_friends.include?(user)
+      content_tag(:span, ("Your friend request is pending"), class: 'user-invite')
+    elsif user.id != current_user.id
+      content_tag(:span, (link_to 'Invite', invitation_path(:user_id => user.id), method: :post), class: 'profile-link', method: :post)
+    end
+  end
 end
