@@ -4,30 +4,8 @@
 
   <%= user_index_friendship_status(@user)%>
   
-  <% if @user.id == current_user.id%>
-    <% unless @user.pending_friends.empty? %>
-      <u><h3>Pending friend requests:</h3></u><br>
-
-      <% @user.pending_friends.each do |f|  %>
-        <div class="user-invite show-requests">
-          <%= link_to f.name, user_path(f.id)  %>
-        </div> <br>
-      <% end  %><br><br>
-
-    <% end  %>	
-    <% unless @user.friend_requests.empty? %>	
-    <u><h3>Pending friend invitations:</h3></u><br>
-    
-      <% @user.friend_requests.each do |f|  %>
-        <div class="user-friend show-requests">
-          <%= link_to f.name, user_path(f.id)  %>
-        </div>
-        <%= link_to 'Accept', accept_path(:first_step, :friends_id => f.id),class: 'profile-link', method: :put %>
-        <%= link_to 'Reject', reject_path(:first_step, :friends_id => f.id),class: 'profile-link', method: :delete %><br>
-      <% end  %>
-    <% end  %>
-<% end  %>
-
+  <%= pending_friends(@user)%>
+  <%= friend_requests(@user)%>
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">

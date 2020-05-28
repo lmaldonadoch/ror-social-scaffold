@@ -53,6 +53,7 @@ $ rake db:setup
 
 ```
 
+
 Next, migrate the database:
 
 ```
