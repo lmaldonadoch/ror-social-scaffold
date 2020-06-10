@@ -5,7 +5,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 
-> On this milestone, we finally deployed our app to Heroku so that it can be accessed everywhere. We managed to finish creating all the Social Network functionality and features for an MVP deployment with industry-standard style and high-quality code. You can access the live version of the website from [here](https://murmuring-thicket-07012.herokuapp.com/users/sign_in)
+On this milestone, we finally deployed our app to Heroku so that it can be accessed everywhere. We managed to finish creating all the Social Network functionality and features for an MVP deployment with industry-standard style and high-quality code. You can access the live version of the website from [here](https://ancient-bastion-12309.herokuapp.com/users/sign_in).
 
 ![screenshot1](images/screenshot02.png)
 
@@ -17,7 +17,7 @@
 
 ## Live Version
 
-[Livelink] https://ancient-bastion-12309.herokuapp.com/users/sign_in
+https://ancient-bastion-12309.herokuapp.com/users/sign_in
 
 ## Built With
 
