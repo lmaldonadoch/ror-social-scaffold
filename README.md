@@ -93,12 +93,12 @@ Postgres: >=9.5
 
 - Github: [@lmaldonadoch](https://github.com/lmaldonadoch)
 - Twitter: [@LuisAngelMCh](https://twitter.com/LuisAngelMCh)
-- Linkedin: [linkedin](https://www.linkedin.com/in/lmaldonadoch)
+- LinkedIn: [lmaldonadoch](https://www.linkedin.com/in/lmaldonadoch)
 
 👤 **Shubham Raj**
 
 - Github: [@ShubhamRaj](https://github.com/shubham14p3)
-- Linkedin: [Shubham14p3](https://www.linkedin.com/in/shubham14p3/)
+- LinkedIn: [Shubham14p3](https://www.linkedin.com/in/shubham14p3/)
 
 ## Future Updates
 
